@@ -17,7 +17,5 @@ class GamePanel extends JPanel
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
-      g.setColor(Color.RED);
-      g.fillRect(0,0,50,50);
    }
 };

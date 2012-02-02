@@ -13,6 +13,9 @@ class JavaPong implements Runnable
    private JFrame window;
    private GamePanel gamepanel;
 
+   // testing code
+   Sprite test;
+
    public static void main(String[] args)
    {
       JavaPong javapong = new JavaPong();
@@ -31,6 +34,9 @@ class JavaPong implements Runnable
       gamepanel = new GamePanel();
       window.add( gamepanel );
       window.pack();
+
+      // testing code
+      test = new Sprite( gamepanel );
    }
 
    /** Implemented from Runnable
@@ -38,6 +44,6 @@ class JavaPong implements Runnable
     */
    public void run()
    {
-      gamepanel.repaint();
+      test.draw();
    }
 };
