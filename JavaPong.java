@@ -2,6 +2,8 @@
 
 import javax.swing.JFrame;
 import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.Graphics;
 
 /**
  * The main class of JavaPong
@@ -14,6 +16,7 @@ class JavaPong implements Runnable
    private JFrame window;
    private GamePanel gamepanel;
    BufferedImage backbuffer;
+   private Thread thread;
 
    // testing code
    Sprite test;
@@ -39,7 +42,9 @@ class JavaPong implements Runnable
       window.pack();
 
       // testing code
-     test = new Sprite( backbuffer );
+     test = new Sprite( backbuffer.createGraphics() );
+     thread = new Thread(this);
+     thread.start();
    }
 
    /** Implemented from Runnable
@@ -47,7 +52,12 @@ class JavaPong implements Runnable
     */
    public void run()
    {
+     Graphics g = backbuffer.createGraphics();
+     // g.setColor(Color.BLUE);
+      //g.fillRect(0,0,50,50);
+
       test.draw();
       gamepanel.repaint();
+      System.out.println("run() for your lives");
    }
 };

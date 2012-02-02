@@ -11,17 +11,16 @@ import java.awt.image.BufferedImage;
 
 class Sprite
 {
-   BufferedImage backbuffer;
+   Graphics context;
 
-   Sprite( BufferedImage backbuffer)
+   Sprite( Graphics context)
    {
-      this.backbuffer = backbuffer;
+      this.context = context;
    }
 
    void draw()
    {
-      Graphics g = backbuffer.createGraphics();
-      g.setColor(Color.RED);
-      g.fillRect(0,0,50,50);
+      context.setColor(Color.RED);
+      context.fillRect(0,0,50,50);
    }
 }
