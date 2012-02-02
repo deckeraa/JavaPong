@@ -12,11 +12,11 @@ import java.awt.image.BufferedImage;
 
 class GamePanel extends JPanel
 {
-   BufferedImage backbuffer;
+   BufferedImage buffer;
 
-   GamePanel( BufferedImage backbuffer)
+   GamePanel( BufferedImage buffer)
    {
-      this.backbuffer = backbuffer;
+      this.buffer = buffer;
    }
 
    /**
@@ -25,6 +25,6 @@ class GamePanel extends JPanel
    public void paintComponent(Graphics g)
    {
       super.paintComponent(g);
-      g.drawImage(backbuffer,0,0,this);
+      g.drawImage(buffer,0,0,this);
    }
 };

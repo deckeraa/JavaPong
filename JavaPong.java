@@ -15,7 +15,7 @@ class JavaPong implements Runnable
 
    private JFrame window;
    private GamePanel gamepanel;
-   BufferedImage backbuffer;
+   private BufferedImage backbuffer;
    private Thread thread;
 
    // testing code
@@ -52,13 +52,11 @@ class JavaPong implements Runnable
     */
    public void run()
    {
-     //Graphics g = backbuffer.createGraphics();
-     // g.setColor(Color.BLUE);
-      //g.fillRect(0,0,50,50);
       Thread current = Thread.currentThread();
 
       while( current == thread )
       {
+         // throttle frame rate
          try
          {
             Thread.sleep(100);
