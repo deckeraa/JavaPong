@@ -1,6 +1,7 @@
 // Copyright Aaron Decker
 
 import javax.swing.JFrame;
+import java.awt.image.BufferedImage;
 
 /**
  * The main class of JavaPong
@@ -12,6 +13,7 @@ class JavaPong implements Runnable
 
    private JFrame window;
    private GamePanel gamepanel;
+   BufferedImage backbuffer;
 
    // testing code
    Sprite test;
@@ -24,6 +26,7 @@ class JavaPong implements Runnable
 
    JavaPong()
    {
+      backbuffer = new BufferedImage(250,250,BufferedImage.TYPE_INT_RGB);
       // setup window
       window = new JFrame("Java Pong");
       window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -31,12 +34,12 @@ class JavaPong implements Runnable
       window.setVisible(true);
 
       // setup gamepanel
-      gamepanel = new GamePanel();
+      gamepanel = new GamePanel( backbuffer );
       window.add( gamepanel );
       window.pack();
 
       // testing code
-      test = new Sprite( gamepanel );
+     test = new Sprite( backbuffer );
    }
 
    /** Implemented from Runnable
@@ -45,5 +48,6 @@ class JavaPong implements Runnable
    public void run()
    {
       test.draw();
+      gamepanel.repaint();
    }
 };

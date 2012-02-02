@@ -2,6 +2,7 @@
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 /**
  * Handles drawing and location of sprites
@@ -10,15 +11,16 @@ import java.awt.Color;
 
 class Sprite
 {
-   GamePanel gpanel;
+   BufferedImage backbuffer;
 
-   Sprite( GamePanel gpanel)
+   Sprite( BufferedImage backbuffer)
    {
-      this.gpanel = gpanel;
+      this.backbuffer = backbuffer;
    }
 
-   void draw(Graphics g)
+   void draw()
    {
+      Graphics g = backbuffer.createGraphics();
       g.setColor(Color.RED);
       g.fillRect(0,0,50,50);
    }
