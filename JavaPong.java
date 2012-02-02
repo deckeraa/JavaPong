@@ -52,12 +52,24 @@ class JavaPong implements Runnable
     */
    public void run()
    {
-     Graphics g = backbuffer.createGraphics();
+     //Graphics g = backbuffer.createGraphics();
      // g.setColor(Color.BLUE);
       //g.fillRect(0,0,50,50);
+      Thread current = Thread.currentThread();
 
-      test.draw();
-      gamepanel.repaint();
-      System.out.println("run() for your lives");
+      while( current == thread )
+      {
+         try
+         {
+            Thread.sleep(100);
+         }
+         catch( InterruptedException e )
+         {
+            e.printStackTrace();
+         }
+
+         test.draw();
+         gamepanel.repaint();
+      }
    }
 };
