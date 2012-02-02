@@ -11,6 +11,7 @@ class JavaPong implements Runnable
 {
 
    private JFrame window;
+   private GamePanel gamepanel;
 
    public static void main(String[] args)
    {
@@ -25,6 +26,11 @@ class JavaPong implements Runnable
       window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
       window.setSize(250,250);
       window.setVisible(true);
+
+      // setup gamepanel
+      gamepanel = new GamePanel();
+      window.add( gamepanel );
+      window.pack();
    }
 
    /** Implemented from Runnable
@@ -32,5 +38,6 @@ class JavaPong implements Runnable
     */
    public void run()
    {
+      gamepanel.repaint();
    }
 };
