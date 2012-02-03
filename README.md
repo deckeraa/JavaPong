@@ -12,12 +12,12 @@ model for a pong game.
 I will be examining the way that the sprites are drawn.
 
 First, we need to extend a JPanel into a new class.
-A JPanel does nothing normally but draw its background.
+A JPanel is a Swing widget which does nothing normally but draw its background.
 
     public void paintComponent(Graphics g)
 
 This is the signature of the method that gets called whenever
-the JPanel is told to ````repaint````.
+the JPanel is told to ````repaint()````.
 The "Graphics g" is a rendering context that, if drawn to, will
 show up on our window.
 
@@ -28,9 +28,13 @@ By making a BufferedImage in the main class, we can
 
     backbuffer.createGraphics();
 
-which creats a graphics context for an image.
+which returns a graphics context for an image.
+We will pass the return graphics context in the 
+constructor for the sprites.
+To get a BufferedImage we need to remember to include
+````import java.awt.image.BufferedImage;````
 
-Once all of our sprites drawn on the BufferedImage,
+Once all of our sprites are drawn on the BufferedImage,
 we tell our JPanel to transfer the BufferedImage to its own
 graphics context. "buffer" is our BufferedImage.
 
