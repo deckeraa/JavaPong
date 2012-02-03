@@ -18,6 +18,8 @@ class JavaPong implements Runnable
    private BufferedImage backbuffer;
    private Thread thread;
 
+   static final int TICK_LENGTH_MS = 100;
+
    // testing code
    Sprite test;
 
@@ -59,13 +61,13 @@ class JavaPong implements Runnable
          // throttle frame rate
          try
          {
-            Thread.sleep(100);
+            Thread.sleep(TICK_LENGTH_MS);
          }
          catch( InterruptedException e )
          {
             e.printStackTrace();
          }
-
+         test.tick(TICK_LENGTH_MS);
          test.draw();
          gamepanel.repaint();
       }
