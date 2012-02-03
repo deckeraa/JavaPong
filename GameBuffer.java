@@ -2,6 +2,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 
+/** Abstracts a BufferedImage to allow
+ * for conveniences such as clearing to a 
+ * background color.
+ */
+
 class GameBuffer
 {
    private BufferedImage buffer;
@@ -14,7 +19,7 @@ class GameBuffer
       this.width = width;
       this.height = height;
       color = Color.RED;
-      backbuffer = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+      buffer = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
       context = buffer.createGraphics();
    }
 
@@ -23,7 +28,7 @@ class GameBuffer
       this.width = width;
       this.height = height;
       this.color = color;
-      backbuffer = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+      buffer = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
       context = buffer.createGraphics();
    }
 
@@ -32,10 +37,15 @@ class GameBuffer
       return context;
    }
 
+   public BufferedImage getBuffer()
+   {
+      return buffer;
+   }
+
    public void clear_to_color( Color color)
    {
       context.setColor(color);
-      context.fillRect( 0, 0, height, width);
+      context.fillRect( 0, 0, width, height);
    }
 
    public void clear()

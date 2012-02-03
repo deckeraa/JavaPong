@@ -15,10 +15,14 @@ class JavaPong implements Runnable
 
    private JFrame window;
    private GamePanel gamepanel;
-   private BufferedImage backbuffer;
+   private GameBuffer backbuffer;
    private Thread thread;
 
-   static final int TICK_LENGTH_MS = 100;
+   static final int TICK_LENGTH_MS = 15;
+
+   // desired height and width for the window
+   static final int DESIRED_WIDTH = 550;
+   static final int DESIRED_HEIGHT = 350;
 
    // testing code
    Sprite test;
@@ -31,11 +35,12 @@ class JavaPong implements Runnable
 
    JavaPong()
    {
-      backbuffer = new BufferedImage(250,250,BufferedImage.TYPE_INT_RGB);
+      backbuffer = new GameBuffer(DESIRED_WIDTH,DESIRED_HEIGHT, Color.ORANGE);
       // setup window
       window = new JFrame("Java Pong");
       window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-      window.setSize(250,250);
+      window.setSize(DESIRED_WIDTH,DESIRED_HEIGHT);
+      //window.setResizable(false);
       window.setVisible(true);
 
       // setup gamepanel
@@ -44,7 +49,7 @@ class JavaPong implements Runnable
       window.pack();
 
       // testing code
-     test = new Sprite( backbuffer.createGraphics() );
+     test = new Sprite( backbuffer.getGraphics() );
      thread = new Thread(this);
      thread.start();
    }
@@ -67,7 +72,12 @@ class JavaPong implements Runnable
          {
             e.printStackTrace();
          }
+
+         // tick sprites 
          test.tick(TICK_LENGTH_MS);
+
+         // draw
+         backbuffer.clear();
          test.draw();
          gamepanel.repaint();
       }

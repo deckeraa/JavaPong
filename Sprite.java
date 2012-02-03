@@ -29,7 +29,7 @@ class Sprite
       height = width = 50;
 
       //testing code
-      yvel = xvel = 10;
+      yvel = xvel = 20;
    }
 
    /**
