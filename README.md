@@ -33,6 +33,7 @@ which creats a graphics context for an image.
 Once all of our sprites drawn on the BufferedImage,
 we tell our JPanel to transfer the BufferedImage to its own
 graphics context. "buffer" is our BufferedImage.
+
     public void paintComponent(Graphics g)
     {
       super.paintComponent(g);
