@@ -48,4 +48,14 @@ class Sprite
       context.setColor(Color.RED);
       context.fillRect( (int)x, (int)y, height, width);
    }
+
+   public void setX( float x )
+   {
+      this.x = x;
+   }
+
+   public void setY( float y )
+   {
+      this.y = y;
+   }
 }

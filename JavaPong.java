@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.*;
 
 /**
  * The main class of JavaPong
@@ -82,4 +83,11 @@ class JavaPong implements Runnable
          gamepanel.repaint();
       }
    }
+
+   public void handleEvents()
+   {
+      //test.setX( e.getX() );
+      //test.setY( e.getY() );
+   }
+
 };
