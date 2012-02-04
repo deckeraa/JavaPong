@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.event.*;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Extended JFrame to allow for drawing of graphics.
@@ -15,12 +15,14 @@ import java.util.LinkedList;
 class GamePanel extends JPanel
 {
    GameBuffer gbuffer;
-   LinkedList <MouseEvent>mouse_events = new LinkedList<MouseEvent>();
+   //LinkedList <MouseEvent>mouse_events = new LinkedList<MouseEvent>();
+   Queue<MouseEvent> mouse_events;
    MyMouseAdapter mouse_adapter;
 
    GamePanel( GameBuffer gbuffer)
    {
       this.gbuffer = gbuffer;
+      mouse_events = new LinkedList<MouseEvent>();
       mouse_adapter = new MyMouseAdapter();
       addMouseListener(mouse_adapter);
       addMouseMotionListener(mouse_adapter);
@@ -36,9 +38,10 @@ class GamePanel extends JPanel
       g.drawImage(gbuffer.getBuffer(),0,0,this);
    }
 
-   /*public MouseEvent getNextMouseEvent()
+   public MouseEvent getNextMouseEvent()
    {
-   }*/
+      return mouse_events.remove();
+   }
 
    public boolean areMouseEventsLeft()
    {
@@ -51,14 +54,12 @@ class GamePanel extends JPanel
    {
       public void mouseDragged(MouseEvent e)
       {
-         System.out.println("Mouse dragged.");
-         mouse_events.add(e);
+         mouse_events.offer(e);
       }
 
       public void mousePressed(MouseEvent e)
       {
-         System.out.println("Mouse pressed.");
-         mouse_events.add(e);
+         mouse_events.offer(e);
       }
 
    };
