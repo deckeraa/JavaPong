@@ -20,7 +20,7 @@ class JavaPong implements Runnable
    private GameBuffer backbuffer;
    private Thread thread;
 
-   static final int TICK_LENGTH_MS = 15;
+   static final int TICK_LENGTH_MS = 10;
 
    // desired height and width for the window
    static final int DESIRED_WIDTH = 550;
@@ -112,7 +112,41 @@ class JavaPong implements Runnable
       try
       {
          KeyEvent e = window.getNextKeyEvent();
-         System.out.println( e.getKeyCode() );
+         if( e.getID() == KeyEvent.KEY_PRESSED )
+         {
+            switch( e.getKeyCode() )
+            {
+               case KeyEvent.VK_LEFT:
+                  test.setXAccel(-150);
+                  break;
+               case KeyEvent.VK_RIGHT:
+                  test.setXAccel(150);
+                  break;
+               case KeyEvent.VK_DOWN:
+                  test.setYAccel(150);
+                  break;
+               case KeyEvent.VK_UP:
+                  test.setYAccel(-150);
+                  break;
+               default:
+                  break;
+            }
+         }
+         if( e.getID() == KeyEvent.KEY_RELEASED )
+         {
+            switch( e.getKeyCode() )
+            {
+               case KeyEvent.VK_LEFT:
+               case KeyEvent.VK_RIGHT:
+                  test.setXAccel(0);
+                  break; 
+               case KeyEvent.VK_UP:
+               case KeyEvent.VK_DOWN:
+                  test.setYAccel(0);
+               default:
+                  break;
+            }
+         }
       }
       catch ( java.util.NoSuchElementException exception )
       {

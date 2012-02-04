@@ -16,6 +16,7 @@ class Sprite
    // position
    private float x,y; // position pixels
    private float xvel, yvel; // velocities, pixels/sec
+   private float xaccel, yaccel; // acceleration, pixels/( sec^2 )
    private int height, width;
 
    static final double SECONDS_PER_MILLISECOND = 0.001; 
@@ -29,11 +30,9 @@ class Sprite
       x = 0;
       y = 0;
       xvel = yvel = 0;
+      xaccel = yaccel = 0;
       height = width = 50;
       color = Color.RED;
-
-      //testing code
-      yvel = xvel = 20;
    }
 
    /**
@@ -42,6 +41,9 @@ class Sprite
     */
    public void tick( int milliseconds )
    {
+      // add accelerations to velocities
+      xvel += xaccel * milliseconds * SECONDS_PER_MILLISECOND;
+      yvel += yaccel * milliseconds * SECONDS_PER_MILLISECOND;
       x += xvel * milliseconds * SECONDS_PER_MILLISECOND;
       y += yvel * milliseconds * SECONDS_PER_MILLISECOND;
       //System.out.println(xvel + " * " + milliseconds + " * " + SECONDS_PER_MILLISECOND);
@@ -61,6 +63,16 @@ class Sprite
    public void setY( float y )
    {
       this.y = y;
+   }
+
+   public void setXAccel( float xaccel )
+   {
+      this.xaccel = xaccel;
+   }
+   
+   public void setYAccel( float yaccel )
+   {
+      this.yaccel = yaccel;
    }
 
    public void setColor( Color color )
