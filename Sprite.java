@@ -20,6 +20,9 @@ class Sprite
 
    static final double SECONDS_PER_MILLISECOND = 0.001; 
 
+   // vector drawing
+   Color color;
+
    Sprite( Graphics context)
    {
       this.context = context;
@@ -27,6 +30,7 @@ class Sprite
       y = 0;
       xvel = yvel = 0;
       height = width = 50;
+      color = Color.RED;
 
       //testing code
       yvel = xvel = 20;
@@ -45,7 +49,7 @@ class Sprite
 
    public void draw()
    {
-      context.setColor(Color.RED);
+      context.setColor(color);
       context.fillRect( (int)x, (int)y, height, width);
    }
 
@@ -57,5 +61,15 @@ class Sprite
    public void setY( float y )
    {
       this.y = y;
+   }
+
+   public void setColor( Color color )
+   {
+      this.color = color;
+   }
+
+   public Color getColor()
+   {
+      return color;
    }
 }

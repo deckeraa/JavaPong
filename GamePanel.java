@@ -62,5 +62,10 @@ class GamePanel extends JPanel
          mouse_events.offer(e);
       }
 
+      public void mouseReleased(MouseEvent e)
+      {
+         mouse_events.offer(e);
+      }
+
    };
 };

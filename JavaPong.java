@@ -77,7 +77,7 @@ class JavaPong implements Runnable
          // tick sprites 
          test.tick(TICK_LENGTH_MS);
 
-         handleEvents();
+         handleMouseEvents();
 
          // draw
          backbuffer.clear();
@@ -86,13 +86,18 @@ class JavaPong implements Runnable
       }
    }
 
-   public void handleEvents()
+   public void handleMouseEvents()
    {
       try
       {
          MouseEvent e = gamepanel.getNextMouseEvent();
          test.setX( e.getX() );
          test.setY( e.getY() );
+         if( e.getID() == MouseEvent.MOUSE_RELEASED )
+         {
+            // just a sample of how to test the event type
+         }
+
       }
       catch ( java.util.NoSuchElementException exception )
       {
