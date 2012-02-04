@@ -15,7 +15,7 @@ import java.util.*;
 class JavaPong implements Runnable
 {
 
-   private JFrame window;
+   private GameFrame window;
    private GamePanel gamepanel;
    private GameBuffer backbuffer;
    private Thread thread;
@@ -25,9 +25,6 @@ class JavaPong implements Runnable
    // desired height and width for the window
    static final int DESIRED_WIDTH = 550;
    static final int DESIRED_HEIGHT = 350;
-
-   // keyboard events
-   MyKeyboardAdapter keyboard_adapter;
 
    // testing code
    Sprite test;
@@ -42,7 +39,7 @@ class JavaPong implements Runnable
    {
       backbuffer = new GameBuffer(DESIRED_WIDTH,DESIRED_HEIGHT, Color.ORANGE);
       // setup window
-      window = new JFrame("Java Pong");
+      window = new GameFrame("Java Pong");
       window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
       window.setSize(DESIRED_WIDTH,DESIRED_HEIGHT);
       //window.setResizable(false);
@@ -52,9 +49,6 @@ class JavaPong implements Runnable
       gamepanel = new GamePanel( backbuffer );
       window.add( gamepanel );
       window.pack();
-
-      // keyboard events
-      keyboard_adapter = new MyKeyboardAdapter();
 
       // testing code
      test = new Sprite( backbuffer.getGraphics() );
@@ -117,7 +111,7 @@ class JavaPong implements Runnable
    {
       try
       {
-         KeyEvent e = gamepanel.getNextKeyEvent();
+         KeyEvent e = window.getNextKeyEvent();
          System.out.println( e.getKeyCode() );
       }
       catch ( java.util.NoSuchElementException exception )
@@ -125,25 +119,5 @@ class JavaPong implements Runnable
          // no events on queue, so nothing to do
       }
    }
-
-   class MyKeyboardAdapter implements KeyListener
-   {
-      MyKeyboardAdapter()
-      {
-         addKeyListener( this );
-      }
-      public void keyPressed(KeyEvent e)
-      {
-         System.out.println( e.getKeyCode() );
-      }
-
-      public void keyReleased(KeyEvent e)  
-      {
-      }
-
-      public void keyTyped(KeyEvent e)
-      {
-      }
-   };
 
 };
