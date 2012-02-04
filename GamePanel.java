@@ -17,15 +17,26 @@ class GamePanel extends JPanel
    GameBuffer gbuffer;
    //LinkedList <MouseEvent>mouse_events = new LinkedList<MouseEvent>();
    Queue<MouseEvent> mouse_events;
+   Queue<KeyEvent> key_events;
    MyMouseAdapter mouse_adapter;
+   MyKeyboardAdapter keyboard_adapter;
 
    GamePanel( GameBuffer gbuffer)
    {
       this.gbuffer = gbuffer;
+
+      // mouse events
       mouse_events = new LinkedList<MouseEvent>();
+
       mouse_adapter = new MyMouseAdapter();
       addMouseListener(mouse_adapter);
       addMouseMotionListener(mouse_adapter);
+
+      // keyboard events
+      key_events = new LinkedList<KeyEvent>();
+
+      keyboard_adapter = new MyKeyboardAdapter();
+      addKeyListener(keyboard_adapter);
    }
 
 
@@ -41,6 +52,11 @@ class GamePanel extends JPanel
    public MouseEvent getNextMouseEvent()
    {
       return mouse_events.remove();
+   }
+
+   public KeyEvent getNextKeyEvent()
+   {
+      return key_events.remove();
    }
 
    public boolean areMouseEventsLeft()
@@ -67,5 +83,24 @@ class GamePanel extends JPanel
          mouse_events.offer(e);
       }
 
+   };
+
+   class MyKeyboardAdapter implements KeyListener
+   {
+      public void keyPressed(KeyEvent e)
+      {
+         key_events.offer(e);
+         System.out.println( e.getKeyCode() );
+      }
+
+      public void keyReleased(KeyEvent e)  
+      {
+         key_events.offer(e);
+      }
+
+      public void keyTyped(KeyEvent e)
+      {
+         key_events.offer(e);
+      }
    };
 };
