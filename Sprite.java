@@ -90,7 +90,12 @@ class Sprite
 
    public boolean isInsideRectangle( int x, int y, int width, int height )
    {
-      return ( ( x < this.x && this.x < x + width ) 
+      boolean upper_left_corner = ( ( x < this.x && this.x < x + width ) 
             && ( y < this.y && this.y < y + height ) );
+      boolean lower_right_corner = ( ( x < this.x + this.width 
+              && this.x + this.width < x + width ) 
+              && ( y < this.y + this.height 
+              && this.y + this.height < y + height ) );
+      return ( upper_left_corner && lower_right_corner );
    }
 }
