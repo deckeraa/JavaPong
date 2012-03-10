@@ -85,6 +85,13 @@ class JavaPong implements Runnable
          backbuffer.clear();
          test.draw();
          gamepanel.repaint();
+
+         //check for bounds
+         if( !test.isInsideRectangle( 0, 0, DESIRED_WIDTH, DESIRED_HEIGHT) )
+         {
+            test.inverseXVel();
+            test.inverseYVel();
+         }
       }
    }
 

@@ -75,6 +75,9 @@ class Sprite
       this.yaccel = yaccel;
    }
 
+   public void inverseXVel() { xvel *= -1; }
+   public void inverseYVel() { yvel *= -1; }
+
    public void setColor( Color color )
    {
       this.color = color;
@@ -83,5 +86,11 @@ class Sprite
    public Color getColor()
    {
       return color;
+   }
+
+   public boolean isInsideRectangle( int x, int y, int width, int height )
+   {
+      return ( ( x < this.x && this.x < x + width ) 
+            && ( y < this.y && this.y < y + height ) );
    }
 }
